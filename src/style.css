@@ -1,18 +1,42 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap');
 
 /* Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Fix date picker grid layout */
+:deep(.dp__outer_menu_wrap) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+  
+  /* Better mobile responsiveness */
+  @media (max-width: 768px) {
+    :deep(.dp__outer_menu_wrap) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  
+  /* Consistent hover states */
+  :deep(.dp__cell_inner):hover {
+    @apply bg-indigo-50;
+  }
+  
+  /* Active date styling */
+  :deep(.dp__active_date) {
+    @apply bg-gradient-to-r from-indigo-600 to-blue-500 text-white;
+  }
+
 :root {
-    --primary: #FE7F2D;
-    --primary-alt: #5FAD56;
-    --grey: #64748b;
-    --dark: #1e293b;
-    --dark-alt: #334155;
-    --light: #FEFAE0;
+    --primary: #4A90E2; /* Updated primary color to a modern blue */
+    --primary-alt: #50E3C2; /* Updated primary-alt color to a complementary teal */
+    --grey: #7F8C8D; /* Updated grey color to a modern grey */
+    --dark: #2C3E50; /* Updated dark color to a modern dark blue */
+    --dark-alt: #34495E; /* Updated dark-alt color to a complementary dark grey-blue */
+    --light: #ECF0F1; /* Updated light color to a modern light grey */
     --sidebar-width: 300px;
 }
 
@@ -20,7 +44,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    font-family: 'Raleway', sans-serif; /* Apply Raleway font to body text */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font to headings */
 }
 
 button {
@@ -28,4 +56,42 @@ button {
     appearance: none;
     border: none;
     outline: none;
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font to buttons */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+.bg-dark {
+    background-color: var(--dark);
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-grey {
+    color: var(--grey);
+}
+
+.text-dark {
+    color: var(--dark);
+}
+
+.text-light {
+    color: var(--light);
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }

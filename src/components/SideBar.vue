@@ -5,8 +5,8 @@
       is_expanded ? 'w-sidebar-width' : 'w-[calc(2rem+32px)]' 
     ]"
   >
-    <div class="logo">
-      <img :src="logoURL" alt="Vue" />
+    <div class="logo mb-4">
+      <img :src="logoURL" alt="Vue" class="w-16 h-16 rounded-full" />
     </div>
 
     <div
@@ -29,8 +29,8 @@
     <!-- Add your sidebar content here -->
     <nav>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
+        <li><router-link to="/" class="text-light hover:text-primary">Home</router-link></li>
+        <li><router-link to="/about" class="text-light hover:text-primary">About</router-link></li>
         <!-- Add more links as needed -->
       </ul>
     </nav>

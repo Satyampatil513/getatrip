@@ -1,23 +1,29 @@
 <template>
-  <div class="flex bg-light min-h-screen">
+  <div class="flex flex-col min-h-screen bg-light">
     <!-- Sidebar -->
-    <SideBar v-if="isLoggedIn" @toggleSidebar="toggleSidebarState" :isSidebarVisible="isSidebarMinimized" />
+    <SideBar v-if="showSidebar" @toggleSidebar="toggleSidebarState" :isSidebarVisible="isSidebarMinimized" />
 
     <!-- Main Content -->
-    <div :class="[ 'flex-1 ']">
-      <!-- Header -->
-      <HeaderComponent title="Get a Trip" subtitle="Find your next best Trip!" />
+    <div :class="['flex flex-col h-screen', showSidebar ? 'lg:pl-24' : '']">
+  <!-- Header -->
+  <div class="flex-shrink-0">
+    <HeaderComponent title="Get a Trip" subtitle="Find your next best Trip!" />
+  </div>
 
-      <!-- Main Content -->
-      <main class="flex-grow container mx-auto px-1 py-1 overflow-y-auto">
-        <router-view />
-      </main>
-    </div>
+  <!-- Main Content -->
+  <div class="flex-grow overflow-y-auto">
+    <main class="mx-auto rounded-lg shadow-lg m-0">
+      <router-view />
+    </main>
+  </div>
+</div>
+
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import SideBar from './components/SideBar.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import { useAuthStore } from './store/auth';
@@ -31,6 +37,11 @@ export default {
     const isSidebarMinimized = ref(false);
     const authStore = useAuthStore();
     const isLoggedIn = ref(authStore.isLoggedIn);
+    const route = useRoute();
+
+    const showSidebar = computed(() => {
+      return isLoggedIn.value && route.name !== 'LandingPage';
+    });
 
     const toggleSidebarState = (state) => {
       isSidebarMinimized.value = state;
@@ -40,6 +51,7 @@ export default {
       isSidebarMinimized,
       toggleSidebarState,
       isLoggedIn,
+      showSidebar,
     };
   },
 };

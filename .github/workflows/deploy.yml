@@ -18,6 +18,14 @@ jobs:
         with:
           node-version: 18
 
+      - name: Create .env file
+        run: |
+          echo "VITE_APP_MAPBOX_ACCESS_TOKEN=${{ secrets.VITE_APP_MAPBOX_ACCESS_TOKEN }}" >> .env
+          echo "VITE_APP_REGISTER_URL=${{ secrets.VITE_APP_REGISTER_URL }}" >> .env
+          echo "VITE_APP_GOOGLE_CLIENT_ID=${{ secrets.VITE_APP_GOOGLE_CLIENT_ID }}" >> .env
+          echo "VITE_APP_AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
+          echo "VITE_APP_AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}" >> .env
+
       - name: Install dependencies
         run: npm install
 
