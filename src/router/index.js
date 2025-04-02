@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LandingPage from '../pages/LandingPage.vue';
 import FormPage from '../pages/FormPage.vue';
 import TripsListPage from '../pages/TripsListPage.vue';
 import IternaryPage from '../pages/IternaryPage.vue';
@@ -15,7 +14,7 @@ const routes = [
   {
     path: '/',
     name: 'LandingPage',
-    component: LandingPage,
+    component: () => import('../pages/landingPage.vue'),
   },
   {
     path: '/form',
@@ -36,6 +35,11 @@ const routes = [
     path: '/register',
     name: 'RegisterPage',
     component: RegisterPage,
+  },
+  {
+    path: '/google-callback',
+    name: 'GoogleCallback',
+    component: () => import('../pages/GoogleCallback.vue'),
   },
   // Add other routes here
 ];
